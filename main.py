@@ -1,15 +1,28 @@
 from decision_engine import get_recommendation
 
 
+def ask_choice(question, valid_choices):
+    while True:
+        answer = input(question).strip().lower()
+
+        if answer in valid_choices:
+            return answer
+
+        print(f"Invalid input. Please choose from: {', '.join(valid_choices)}")
+
+
 def main():
     print("Supply Chain Decision Engine")
     print("----------------------------")
 
-    new_part = input("Is this a new part? (yes/no): ").strip().lower()
-    risk_level = input("Risk level (A/B/C): ").strip().upper()
-    supplier = input("Predefined supplier available? (yes/no): ").strip().lower()
-    advantage = input("Time/Cost advantage? (yes/no): ").strip().lower()
-    strategic_importance = input("Strategic importance (low/medium/high): ").strip().lower()
+    new_part = ask_choice("Is this a new part? (yes/no): ", ["yes", "no"])
+    risk_level = ask_choice("Risk level (A/B/C): ", ["a", "b", "c"]).upper()
+    supplier = ask_choice("Predefined supplier available? (yes/no): ", ["yes", "no"])
+    advantage = ask_choice("Time/Cost advantage? (yes/no): ", ["yes", "no"])
+    strategic_importance = ask_choice(
+        "Strategic importance (low/medium/high): ",
+        ["low", "medium", "high"],
+    )
 
     score, recommendation, reason = get_recommendation(
         new_part,
