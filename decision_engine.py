@@ -1,4 +1,9 @@
 def get_recommendation(new_part, risk_level, supplier, advantage):
+    """
+    Determine whether the Standard PMQ Process
+    or Modified PMQ Process should be used.
+    """
+
     if (
         new_part == "no"
         and risk_level in ["B", "C"]
