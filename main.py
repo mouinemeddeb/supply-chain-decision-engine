@@ -1,3 +1,6 @@
+from decision_engine import get_recommendation
+
+
 def main():
     print("Supply Chain Decision Engine")
     print("----------------------------")
@@ -7,17 +10,12 @@ def main():
     supplier = input("Predefined supplier available? (yes/no): ").strip().lower()
     advantage = input("Time/Cost advantage? (yes/no): ").strip().lower()
 
-    if (
-        new_part == "no"
-        and risk_level in ["B", "C"]
-        and supplier == "yes"
-        and advantage == "yes"
-    ):
-        recommendation = "Use Modified PMQ Process"
-        reason = "Existing supplier, manageable risk, and expected efficiency gains."
-    else:
-        recommendation = "Use Standard PMQ Process"
-        reason = "One or more conditions for the modified process are not satisfied."
+    recommendation, reason = get_recommendation(
+        new_part,
+        risk_level,
+        supplier,
+        advantage,
+    )
 
     print("\nRecommendation:")
     print(recommendation)
